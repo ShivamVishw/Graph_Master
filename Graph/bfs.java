@@ -1,8 +1,9 @@
+package Graph;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.ArrayList;
 
-class dfs{
+class bfs{
     //Firstly make edge class which will take care about edge and 
     // each edge will contain source of that vertices and destination
     static class Edge{
@@ -20,7 +21,7 @@ class dfs{
     public static void createdGraph(ArrayList<Edge> graph[]){
 
         //Now craete empty arraylist for each node becoz initialy wo null 
-        //hai to null ko ham directly arrraylist nhi consider kar sakte hai
+        // hai to null ko ham directly arrraylist nhi consider kar sakte hai
         for(int i=0; i<graph.length; i++){
             graph[i] = new ArrayList<Edge>();
         }
@@ -51,33 +52,43 @@ class dfs{
 
     }
 
-    public static void dfsImp(ArrayList<Edge> graph[], int curr, boolean vis[]){
-        //print curr node
-        System.out.print(curr+" ");
+    public static void bfsImp(ArrayList<Edge> graph[], int V){
+        Queue<Integer> q =new LinkedList<>();
+        boolean vis[] = new boolean[V];
 
-        //make curr node visited on booolean visited aray
-        vis[curr] = true;
+        //Take starting point we initialize it as 0 in the queue
+        
+        q.add(0);
 
-        //now call dfs for neighour node
-        for(int i=0; i<graph[curr].size(); i++){
-            Edge e = graph[curr].get(i);
+        while(!q.isEmpty()){
+            int curr = q.remove();
+            if(!vis[curr]){
+                    
+                //curr ko print kardo 
+                System.out.print(curr+" ");
 
-            if(vis[e.dest] ==false){
-                dfsImp(graph, e.dest, vis);
+                // now jo visit kiye use true kardo visited me 
+                vis[curr] = true;
+
+                //now curr ke neighbours ko queue me add kar denge 
+                for(int i=0; i<graph[curr].size(); i++){
+                    Edge e = graph[curr].get(i);
+                    q.add(e.dest);
+                }
+
             }
-            
         }
-    
+        System.out.println();
     }
+
     public static void main(String[] args) {
         //Number of vertexes
         int V =7;
-        boolean vis[] = new boolean[V];
+
         ArrayList<Edge> graph[] = new ArrayList[V];
         createdGraph(graph);
+        bfsImp(graph, V);
 
-        //statrting me current 0 hoga
-        dfsImp(graph, 0, vis);
-        System.out.println();
     }
 }
+
