@@ -57,7 +57,7 @@ public class dijkstras{
         }
     }
 
-//**Now Pair class me compareble function ke through power aa gyi hai ki wo ab dist ke base pe compare kar sake */
+//**Now Pair class me comparable function ke through power aa gyi hai ki wo ab dist ke base pe compare kar sake */
 
 
     // O(E + E logV)
