@@ -16,7 +16,7 @@ public class nQueens{
         }
         return true;
     }
-
+    
     private static void placequeens(int []board, int row, int n){
         if(row== n){
             //means it has fiinished whole queens successfully
